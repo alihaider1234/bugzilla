@@ -1,0 +1,9 @@
+<ul id="project_list">
+<%# @project.each do |c| %>
+<%= render partial: "shared/project", collection: @projects %>
+<%#= c.title %> 
+<%# end %>
+</ul>
+
+
+<p><%= link_to "Add new Project", new_project_path %></p>

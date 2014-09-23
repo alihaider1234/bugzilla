@@ -1,0 +1,44 @@
+<p><%= link_to "New", new_bug_path, :class => 'btn btn-primary'%></p>
+
+<% if @bugs.blank? %>
+<p>There are not any bugs currently in any project</p>
+<% else %>
+<p>These are the current bugs in project/s</p>
+<table class= "table table-striped">
+<thead>
+	<tr>
+	<th>Title</th>
+	<th>Description</th>
+	<th>Project</th>
+	<th>Deadline</th>
+	<th>Assigned to</th>
+	<th>Assigned by</th>
+	<th>Type</th>
+	<th>Status</th>
+	<th>Picture</th>
+	<th>Delete</th>
+	<th>Edit</th>
+</tr>
+</thead>
+<tbody>
+<% @bugs.each do |c| %>
+<tr>
+	<td><%= c.title %></td>
+	<td><%= c.description %></td>
+	<td><%= c.project.title if c.project%></td>
+	<td><%= c.deadline %></td>	
+	<td><%= User.find(c.developer_id).email%></td>
+	<td><%= c.user.email if c.user %></td>
+	<td><%= c.typeOfBug%></td>
+	<td><%= c.status %></td>
+	<td><%= image_tag c.image_url.to_s %></td>
+	<td> <%# if can? :destroy, c %><%= link_to 'Delete', c, method: :delete, :confirm => "Are you sure you want to delete this item?", :class => 'btn btn-danger'  %><%# end %></td>
+	<td><%# if can? :update, c %> <%= link_to 'Edit', edit_bug_path(c), :class => 'btn'  %><%# end %></td>
+</tr>
+<% end %>	
+</tbody>
+
+</table>
+
+<% end %>
+

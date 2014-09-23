@@ -1,0 +1,7 @@
+<h1>Add new Project</h1>
+
+<%= form_for @project, :url => {:action => :create} do |f| %>
+  <p><label for="bug_title">Title</label>:
+  <%= f.text_field :title %></p>
+  <%= f.submit %>
+<% end %>
